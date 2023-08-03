@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container {
+        flex: auto;
+        align-items: center;
+        text-align: center;
+      }
+      
+      #maincontainer{
+        background-color: aliceblue;
+      }
+
+      #day {
+        color: white;
+        display: inline-block;
+        background-color: #FF78C4;
+        width: 400px;
+        padding: 20px;
+      }
+
+      h2 {
+        color: #FF78C4;
+        background-color: white;
+        display: inline-block;
+      }
+
+      #items {
+        flex: auto;
+        align-items: center;
+        text-align: center;
+        margin: 4px;
+      }
+
+      #check {
+        flex: 1;
+        width: 20px;
+        height: 20px;
+      }
+      
+      #subitem {
+        display: inline-block;
+        width: 400px;
+        background-color: white;
+        border-radius: 4px;
+      }
+
+      .subitemlast{
+        padding: 15px;
+      }
+
+      body {
+        background-color: #FFECEC;
+      }
+
+      #first {
+        display: flex;
+        align-items: center;
+      }
+
+      #infocontent {
+        flex: 4;
+        display: block;
+        text-align: start;
+      }
+
+      #inputtext{
+        width: 65%;
+        padding: 10px;
+      }
+
+      #submitbutton{
+        width: 25%;
+        border: none;
+        padding: 10px;
+        color: white;
+        border-radius: 6px;
+        background-color: #cd7cfc;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="container">
+      <h1 id="day"></h1>
+    </div>
+    
+    <% for (let i=0;i<listARR.length;i++){%>
+      <div id="items">
+        <div id="subitem">
+          <form id="first" method="post" action="/delete">
+            <input type="checkbox" id="check" onchange="this.form.submit()" name="checkbox" value="<%=listARR[i].id%>"/>
+            <div id="infocontent"><h2 id="iteminfo"><%=listARR[i].info%></h2></div>
+          </form>
+        </div>
+      </div>
+    <%}%>
+ 
+    <div id="items">
+          <form class="subitemlast" id="subitem" action="/" method="post">
+              <input type="text" id="inputtext" placeholder="Enter your task " name="inputinfo" />
+              <input type="submit" id="submitbutton" value="ADD" />
+          </form>
+    </div>
+
+    <script>
+      const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+      const d = new Date()
+      let month = months[d.getUTCMonth()];
+      let date = d.getDate();
+      const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      let day = weekday[d.getDay()];
+      var fulldate = document.getElementById("day");
+      let year = d.getFullYear();
+      fulldate.textContent = "("+day+") "+ date+" "+month+" "+year;
+      console.log(fulldate.textContent);
+    </script>
+
+    
+  </body>
+</html>
